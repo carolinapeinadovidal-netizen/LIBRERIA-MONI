@@ -1,0 +1,2910 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Moni Books - Librería literaria con las mejores novedades, escritores de moda y un homenaje a las madres escritoras.">
+  <title>Moni Books | Tu Refugio Literario</title>
+
+  <!-- Google Fonts Requeridas -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ==========================================================================
+       1. VARIABLES CSS (Regla de Color 60-30-10 & Tipografía)
+       ========================================================================== */
+    :root {
+      /* 60% Dominante - Negro Puro */
+      --color-dominant: #000000;
+      --color-dominant-soft: #0a0a0a;
+
+      /* 30% Secundario - Verde Bosque Oscuro */
+      --color-secondary: #283F24;
+      --color-secondary-light: #34522f;
+      --color-secondary-dark: #1b2c18;
+
+      /* 10% Acento - Naranja Vibrante */
+      --color-accent: #F6850C;
+      --color-accent-hover: #ff992b;
+      --color-accent-glow: rgba(246, 133, 12, 0.25);
+
+      /* Texto de Lectura y Alto Contraste (WCAG) */
+      --text-main: #FFFFFF;
+      --text-muted: #F4F4F4;
+      --text-subtle: #d0d7cf;
+
+      /* Tipografías Oficiales */
+      --font-heading: 'Libre Franklin', sans-serif;
+      --font-body: 'Playfair Display', serif;
+
+      /* Sombras y Transiciones */
+      --shadow-card: 0 12px 28px rgba(0, 0, 0, 0.45);
+      --shadow-hover: 0 18px 36px rgba(0, 0, 0, 0.65);
+      --shadow-accent: 0 8px 24px rgba(246, 133, 12, 0.35);
+      --transition-standard: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+      --transition-slow: all 0.5s ease;
+      --radius-sm: 8px;
+      --radius-md: 14px;
+      --radius-lg: 20px;
+    }
+
+    /* ==========================================================================
+       2. RESET Y ESTILOS BASE
+       ========================================================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      font-size: 16px;
+      background-color: var(--color-dominant);
+      color: var(--text-main);
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-dominant);
+      color: var(--text-muted);
+      line-height: 1.7;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3, h4, h5, h6,
+    .btn,
+    .nav-link,
+    .badge,
+    .price-tag,
+    .author-name {
+      font-family: var(--font-heading);
+      letter-spacing: -0.02em;
+    }
+
+    p, blockquote, .bio-text, .synopsis-text, .quote-text {
+      font-family: var(--font-body);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition-standard);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-padding {
+      padding: 96px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto 60px;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.85rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--color-accent);
+      margin-bottom: 14px;
+      position: relative;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 3.5vw, 2.85rem);
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 18px;
+      line-height: 1.2;
+    }
+
+    .section-subtitle {
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--text-subtle);
+      font-style: italic;
+    }
+
+    /* Botones y Microinteracciones */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 13px 28px;
+      border-radius: var(--radius-sm);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition-standard);
+      border: 2px solid transparent;
+      outline: none;
+    }
+
+    .btn-accent {
+      background-color: var(--color-accent);
+      color: #000000;
+      box-shadow: var(--shadow-accent);
+    }
+
+    .btn-accent:hover {
+      background-color: var(--color-accent-hover);
+      color: #000000;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(246, 133, 12, 0.5);
+    }
+
+    .btn-outline-accent {
+      background-color: transparent;
+      color: #FFFFFF;
+      border-color: var(--color-accent);
+    }
+
+    .btn-outline-accent:hover {
+      background-color: var(--color-accent);
+      color: #000000;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .btn-sm {
+      padding: 9px 18px;
+      font-size: 0.85rem;
+    }
+
+    /* Badges */
+    .badge-accent {
+      background-color: var(--color-accent);
+      color: #000000;
+      font-size: 0.75rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 40px;
+      letter-spacing: 0.05em;
+    }
+
+    /* ==========================================================================
+       3. SECCIÓN A: BARRA DE NAVEGACIÓN (NAVBAR)
+       ========================================================================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background-color: var(--color-secondary);
+      border-bottom: 1px solid rgba(246, 133, 12, 0.2);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+      transition: var(--transition-standard);
+    }
+
+    .navbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 80px;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 1.65rem;
+      font-weight: 800;
+      color: var(--text-main);
+      letter-spacing: -0.03em;
+    }
+
+    .brand-logo span {
+      color: var(--color-accent);
+    }
+
+    .brand-logo svg {
+      width: 30px;
+      height: 30px;
+      fill: var(--color-accent);
+    }
+
+    .nav-menu {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-link {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: var(--text-main);
+      position: relative;
+      padding: 6px 0;
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: var(--color-accent);
+      transition: var(--transition-standard);
+    }
+
+    .nav-link:hover {
+      color: var(--color-accent);
+    }
+
+    .nav-link:hover::after,
+    .nav-link.active::after {
+      width: 100%;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .menu-toggle span {
+      display: block;
+      width: 26px;
+      height: 3px;
+      background-color: var(--color-accent);
+      margin: 5px 0;
+      border-radius: 2px;
+      transition: var(--transition-standard);
+    }
+
+    /* ==========================================================================
+       4. SECCIÓN B: HERO SECTION (PORTADA PRINCIPAL)
+       ========================================================================== */
+    .hero {
+      background-color: var(--color-dominant);
+      position: relative;
+      overflow: hidden;
+      padding: 100px 0 120px;
+    }
+
+    /* Resplandor visual sutil para ambientar el negro dominante */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -20%;
+      right: -10%;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(40, 63, 36, 0.45) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge-container {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--color-secondary);
+      padding: 7px 18px;
+      border-radius: 30px;
+      border: 1px solid rgba(246, 133, 12, 0.35);
+      margin-bottom: 24px;
+    }
+
+    .hero-badge-container span {
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--text-main);
+      font-family: var(--font-heading);
+      letter-spacing: 0.04em;
+    }
+
+    .hero-badge-container .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--color-accent);
+      animation: pulseDot 2s infinite;
+    }
+
+    @keyframes pulseDot {
+      0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(246, 133, 12, 0.7); }
+      70% { transform: scale(1.15); box-shadow: 0 0 0 8px rgba(246, 133, 12, 0); }
+      100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(246, 133, 12, 0); }
+    }
+
+    .hero-title {
+      font-size: clamp(2.4rem, 4.4vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.12;
+      color: var(--text-main);
+      margin-bottom: 24px;
+    }
+
+    .hero-title .highlight {
+      color: var(--color-accent);
+      position: relative;
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+      font-weight: 400;
+      color: var(--text-muted);
+      line-height: 1.8;
+      margin-bottom: 38px;
+      max-width: 580px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 45px;
+    }
+
+    .hero-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .stat-item h3 {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      margin-bottom: 4px;
+    }
+
+    .stat-item p {
+      font-size: 0.9rem;
+      color: var(--text-subtle);
+      font-style: italic;
+    }
+
+    /* Imagen decorativa Hero */
+    .hero-visual {
+      position: relative;
+    }
+
+    .hero-image-card {
+      position: relative;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+      border: 2px solid rgba(246, 133, 12, 0.3);
+      background-color: var(--color-secondary);
+    }
+
+    .hero-image-card img {
+      width: 100%;
+      height: 480px;
+      object-fit: cover;
+      transition: var(--transition-slow);
+    }
+
+    .hero-image-card:hover img {
+      transform: scale(1.04);
+    }
+
+    .hero-floating-card {
+      position: absolute;
+      bottom: -25px;
+      left: -25px;
+      background-color: var(--color-secondary);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-md);
+      padding: 16px 22px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-floating-card .icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background-color: var(--color-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #000000;
+      flex-shrink: 0;
+    }
+
+    .hero-floating-card .info strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      color: var(--text-main);
+    }
+
+    .hero-floating-card .info span {
+      font-size: 0.85rem;
+      color: var(--text-subtle);
+      font-style: italic;
+    }
+
+    /* ==========================================================================
+       5. SECCIÓN C: LIBROS MÁS DESTACADOS
+       ========================================================================== */
+    .featured-books {
+      background-color: var(--color-dominant);
+      position: relative;
+      border-top: 1px solid rgba(40, 63, 36, 0.7);
+    }
+
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 28px;
+    }
+
+    .book-card {
+      background-color: var(--color-secondary);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid rgba(246, 133, 12, 0.2);
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-standard);
+      position: relative;
+    }
+
+    .book-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-hover);
+      border-color: var(--color-accent);
+    }
+
+    .book-cover-wrap {
+      position: relative;
+      height: 290px;
+      overflow: hidden;
+      background-color: #0f160e;
+    }
+
+    .book-cover-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .book-card:hover .book-cover-wrap img {
+      transform: scale(1.08);
+    }
+
+    .book-badge-pos {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+    }
+
+    .book-info {
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .book-rating {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-bottom: 8px;
+      color: var(--color-accent);
+      font-size: 0.85rem;
+    }
+
+    .book-title {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+
+    .book-author {
+      font-size: 0.95rem;
+      font-style: italic;
+      color: var(--color-accent);
+      margin-bottom: 12px;
+    }
+
+    .synopsis-text {
+      font-size: 0.9rem;
+      color: var(--text-subtle);
+      line-height: 1.6;
+      margin-bottom: 20px;
+      flex-grow: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .book-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      margin-top: auto;
+    }
+
+    .price-tag {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: var(--color-accent);
+    }
+
+    /* ==========================================================================
+       6. SECCIÓN D: ESCRITORES DE MODA
+       ========================================================================== */
+    .trending-authors {
+      background-color: var(--color-dominant);
+      position: relative;
+      border-top: 1px solid rgba(40, 63, 36, 0.7);
+    }
+
+    .authors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .author-card {
+      background: linear-gradient(180deg, rgba(40, 63, 36, 0.45) 0%, rgba(10, 10, 10, 0.85) 100%);
+      border-radius: var(--radius-lg);
+      padding: 36px 28px;
+      text-align: center;
+      border: 1px solid rgba(246, 133, 12, 0.25);
+      transition: var(--transition-standard);
+      position: relative;
+    }
+
+    .author-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-accent);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.8), 0 0 20px rgba(246, 133, 12, 0.2);
+    }
+
+    .author-photo-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 22px;
+    }
+
+    .author-photo {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 3px solid var(--color-accent);
+      box-shadow: 0 0 20px rgba(246, 133, 12, 0.35);
+      transition: var(--transition-standard);
+    }
+
+    .author-card:hover .author-photo {
+      transform: scale(1.06);
+      border-color: var(--color-accent-hover);
+      box-shadow: 0 0 25px rgba(246, 133, 12, 0.6);
+    }
+
+    .author-genre {
+      display: inline-block;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-accent);
+      background: rgba(246, 133, 12, 0.12);
+      padding: 4px 14px;
+      border-radius: 30px;
+      margin-bottom: 12px;
+      border: 1px solid rgba(246, 133, 12, 0.3);
+    }
+
+    .author-name {
+      font-size: 1.45rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 12px;
+    }
+
+    .bio-text {
+      font-size: 0.95rem;
+      color: var(--text-subtle);
+      line-height: 1.7;
+      margin-bottom: 24px;
+    }
+
+    .author-latest-work {
+      background-color: var(--color-secondary);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-left: 3px solid var(--color-accent);
+      text-align: left;
+    }
+
+    .author-latest-work svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .author-latest-work .work-label {
+      font-size: 0.75rem;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      font-family: var(--font-heading);
+      font-weight: 700;
+    }
+
+    .author-latest-work .work-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-main);
+      font-style: italic;
+    }
+
+    /* ==========================================================================
+       7. SECCIÓN E: MADRES ESCRITORAS (SECCIÓN ESPECIAL)
+       ========================================================================== */
+    .special-mothers {
+      /* Fondo diferenciado en Verde Bosque Oscuro (30%) para calidez y protagonismo */
+      background-color: var(--color-secondary);
+      position: relative;
+      border-top: 2px solid rgba(246, 133, 12, 0.4);
+      border-bottom: 2px solid rgba(246, 133, 12, 0.4);
+    }
+
+    .special-mothers::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.2) 0%, transparent 80%);
+      pointer-events: none;
+    }
+
+    .mothers-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
+    .mother-card {
+      background-color: var(--color-dominant);
+      border-radius: var(--radius-lg);
+      padding: 34px 28px;
+      border: 1px solid rgba(246, 133, 12, 0.35);
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-direction: column;
+      transition: var(--transition-standard);
+      position: relative;
+    }
+
+    .mother-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--color-accent);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.9), 0 0 25px rgba(246, 133, 12, 0.25);
+    }
+
+    .mother-header {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 20px;
+    }
+
+    .mother-photo {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--color-accent);
+      flex-shrink: 0;
+      box-shadow: 0 4px 12px rgba(246, 133, 12, 0.3);
+    }
+
+    .mother-titles h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    .mother-titles span {
+      font-size: 0.85rem;
+      color: var(--color-accent);
+      font-style: italic;
+    }
+
+    .quote-block {
+      position: relative;
+      padding: 16px 20px 16px 24px;
+      background: rgba(40, 63, 36, 0.4);
+      border-left: 3px solid var(--color-accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      margin-bottom: 20px;
+    }
+
+    .quote-block .quote-mark {
+      font-size: 3.2rem;
+      line-height: 0;
+      color: var(--color-accent);
+      position: absolute;
+      top: 14px;
+      left: 6px;
+      opacity: 0.85;
+      font-family: var(--font-body);
+    }
+
+    .quote-text {
+      font-size: 1rem;
+      font-style: italic;
+      color: var(--text-main);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    .mother-story {
+      font-size: 0.92rem;
+      color: var(--text-subtle);
+      line-height: 1.7;
+      margin-bottom: 24px;
+      flex-grow: 1;
+    }
+
+    .recommended-book-box {
+      background-color: var(--color-secondary-dark);
+      border: 1px solid rgba(246, 133, 12, 0.3);
+      border-radius: var(--radius-sm);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+    }
+
+    .recommended-book-box .book-meta strong {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+    }
+
+    .recommended-book-box .book-meta span {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      font-style: italic;
+    }
+
+    /* Banner de Descuento Especial: Madres Escritoras */
+    .mothers-discount-banner {
+      margin-top: 55px;
+      background: linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(18, 28, 16, 0.98) 100%);
+      border: 2px solid var(--color-accent);
+      border-radius: var(--radius-lg);
+      padding: 44px 48px;
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8), 0 0 30px rgba(246, 133, 12, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .mothers-discount-banner::before {
+      content: '';
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(246, 133, 12, 0.22) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .discount-badge-ribbon {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
+    }
+
+    .discount-time {
+      font-size: 0.85rem;
+      color: var(--color-accent);
+      font-family: var(--font-heading);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .discount-content-grid {
+      display: grid;
+      grid-template-columns: 1.35fr 0.95fr;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .discount-title {
+      font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.25;
+      margin-bottom: 14px;
+    }
+
+    .discount-title span {
+      color: var(--color-accent);
+    }
+
+    .discount-description {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.7;
+      margin-bottom: 22px;
+    }
+
+    .discount-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.92rem;
+      color: var(--text-subtle);
+      font-family: var(--font-heading);
+    }
+
+    .perk-item svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--color-accent);
+      flex-shrink: 0;
+    }
+
+    .discount-action-col {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+      background: rgba(40, 63, 36, 0.35);
+      border: 1px dashed rgba(246, 133, 12, 0.45);
+      border-radius: var(--radius-md);
+      padding: 28px;
+      text-align: center;
+    }
+
+    .coupon-label {
+      font-size: 0.85rem;
+      color: var(--text-subtle);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-family: var(--font-heading);
+      font-weight: 700;
+    }
+
+    .coupon-code-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      background: var(--color-dominant);
+      border: 1px solid var(--color-accent);
+      border-radius: var(--radius-sm);
+      padding: 10px 16px;
+    }
+
+    .coupon-code {
+      font-family: var(--font-heading);
+      font-size: 1.45rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      letter-spacing: 0.1em;
+    }
+
+    .btn-copy-coupon {
+      background: transparent;
+      border: 1px solid rgba(246, 133, 12, 0.5);
+      color: var(--text-main);
+      padding: 6px 12px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-family: var(--font-heading);
+      font-size: 0.78rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: var(--transition-standard);
+    }
+
+    .btn-copy-coupon:hover {
+      background: var(--color-accent);
+      color: #000000;
+      border-color: var(--color-accent);
+    }
+
+    .discount-cta-btn {
+      width: 100%;
+      box-shadow: 0 8px 24px rgba(246, 133, 12, 0.4);
+    }
+
+    /* Enlace Directo y Desplazamiento Suave */
+    #descuento-especial {
+      scroll-margin-top: 100px;
+    }
+
+    .nav-link-discount {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-discount-badge {
+      background-color: var(--color-accent);
+      color: #000000;
+      font-size: 0.68rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: 10px;
+      line-height: 1.2;
+    }
+
+    .btn-discount-hero {
+      background: rgba(246, 133, 12, 0.15);
+      color: #FFFFFF;
+      border: 2px solid var(--color-accent);
+      padding: 13px 22px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-family: var(--font-heading);
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition-standard);
+    }
+
+    .btn-discount-hero:hover {
+      background-color: var(--color-accent);
+      color: #000000;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    .discount-tools {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .btn-direct-link,
+    .btn-create-modal-trigger {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      padding: 10px 14px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border-radius: var(--radius-sm);
+      cursor: pointer;
+      font-family: var(--font-heading);
+      transition: var(--transition-standard);
+      text-decoration: none;
+    }
+
+    .btn-direct-link {
+      background: transparent;
+      border: 1px dashed var(--color-accent);
+      color: #FFFFFF;
+    }
+
+    .btn-direct-link:hover {
+      background: rgba(246, 133, 12, 0.2);
+      border-style: solid;
+      transform: translateY(-2px);
+    }
+
+    .btn-create-modal-trigger {
+      background: var(--color-secondary-light);
+      border: 1px solid rgba(246, 133, 12, 0.4);
+      color: var(--color-accent);
+    }
+
+    .btn-create-modal-trigger:hover {
+      background: var(--color-accent);
+      color: #000000;
+      transform: translateY(-2px);
+    }
+
+    /* Modal para Crear Descuento Especial */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2000;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: var(--color-secondary);
+      border: 2px solid var(--color-accent);
+      border-radius: var(--radius-lg);
+      max-width: 520px;
+      width: 100%;
+      padding: 36px 30px;
+      position: relative;
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.9), 0 0 35px rgba(246, 133, 12, 0.25);
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0);
+    }
+
+    .modal-close-btn {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      background: none;
+      border: none;
+      color: var(--text-subtle);
+      font-size: 1.8rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: var(--transition-standard);
+    }
+
+    .modal-close-btn:hover {
+      color: var(--color-accent);
+    }
+
+    .modal-title {
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+
+    .modal-subtitle {
+      font-size: 0.92rem;
+      color: var(--text-subtle);
+      margin-bottom: 22px;
+      font-style: italic;
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      font-family: var(--font-heading);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-accent);
+      margin-bottom: 8px;
+    }
+
+    .form-input, .form-select {
+      width: 100%;
+      padding: 12px 14px;
+      background: var(--color-dominant);
+      border: 1px solid rgba(246, 133, 12, 0.4);
+      border-radius: var(--radius-sm);
+      color: #FFFFFF;
+      font-family: var(--font-heading);
+      font-size: 0.95rem;
+      outline: none;
+      transition: var(--transition-standard);
+    }
+
+    .form-input:focus, .form-select:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 10px rgba(246, 133, 12, 0.35);
+    }
+
+    .modal-generated-result {
+      display: none;
+      margin-top: 20px;
+      padding: 16px;
+      background: rgba(0, 0, 0, 0.7);
+      border: 1px dashed var(--color-accent);
+      border-radius: var(--radius-sm);
+      text-align: center;
+    }
+
+    .generated-link-display {
+      font-family: monospace;
+      font-size: 0.85rem;
+      color: var(--color-accent);
+      word-break: break-all;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    /* ==========================================================================
+       CARRITO DE COMPRAS (DRAWER & NOTIFICACIONES)
+       ========================================================================== */
+    .cart-btn {
+      position: relative;
+    }
+
+    .cart-count-badge {
+      background-color: var(--color-dominant);
+      color: var(--color-accent);
+      border: 1px solid var(--color-accent);
+      font-size: 0.72rem;
+      font-weight: 800;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      margin-left: 4px;
+      transition: transform 0.2s ease;
+    }
+
+    .cart-count-badge.bump {
+      transform: scale(1.35);
+    }
+
+    /* Cart Overlay */
+    .cart-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(5px);
+      z-index: 2500;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .cart-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Cart Drawer */
+    .cart-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 100%;
+      max-width: 440px;
+      background-color: #121c10;
+      border-left: 2px solid var(--color-accent);
+      box-shadow: -10px 0 40px rgba(0, 0, 0, 0.85);
+      z-index: 2600;
+      display: flex;
+      flex-direction: column;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .cart-overlay.active .cart-drawer {
+      transform: translateX(0);
+    }
+
+    .cart-header {
+      padding: 22px 24px;
+      background-color: var(--color-secondary-dark);
+      border-bottom: 1px solid rgba(246, 133, 12, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .cart-header h3 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-header h3 svg {
+      width: 22px;
+      height: 22px;
+      fill: var(--color-accent);
+    }
+
+    .cart-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-subtle);
+      font-size: 1.6rem;
+      cursor: pointer;
+      line-height: 1;
+      transition: var(--transition-standard);
+      padding: 4px;
+    }
+
+    .cart-close-btn:hover {
+      color: var(--color-accent);
+      transform: rotate(90deg);
+    }
+
+    /* Cart Items Container */
+    .cart-items-container {
+      flex: 1;
+      overflow-y: auto;
+      padding: 20px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .cart-empty-state {
+      margin: auto;
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--text-subtle);
+    }
+
+    .cart-empty-state svg {
+      width: 64px;
+      height: 64px;
+      fill: rgba(246, 133, 12, 0.4);
+      margin-bottom: 16px;
+    }
+
+    .cart-empty-state h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .cart-empty-state p {
+      font-size: 0.9rem;
+      font-style: italic;
+      margin-bottom: 20px;
+    }
+
+    .cart-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      background-color: rgba(0, 0, 0, 0.45);
+      border: 1px solid rgba(246, 133, 12, 0.2);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      transition: var(--transition-standard);
+    }
+
+    .cart-item:hover {
+      border-color: rgba(246, 133, 12, 0.5);
+    }
+
+    .cart-item-img {
+      width: 58px;
+      height: 78px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      flex-shrink: 0;
+    }
+
+    .cart-item-details {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .cart-item-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-bottom: 2px;
+    }
+
+    .cart-item-author {
+      font-size: 0.8rem;
+      font-style: italic;
+      color: var(--text-subtle);
+      margin-bottom: 6px;
+    }
+
+    .cart-item-price {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      font-family: var(--font-heading);
+    }
+
+    .cart-item-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .qty-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 4px;
+      background-color: var(--color-secondary);
+      border: 1px solid rgba(246, 133, 12, 0.4);
+      color: var(--text-main);
+      font-size: 0.9rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition-standard);
+    }
+
+    .qty-btn:hover {
+      background-color: var(--color-accent);
+      color: #000000;
+    }
+
+    .qty-number {
+      font-family: var(--font-heading);
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      min-width: 18px;
+      text-align: center;
+    }
+
+    .remove-item-btn {
+      background: none;
+      border: none;
+      color: #ff5c5c;
+      cursor: pointer;
+      padding: 6px;
+      transition: var(--transition-standard);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .remove-item-btn:hover {
+      color: #ff8e8e;
+      transform: scale(1.15);
+    }
+
+    /* Cart Footer */
+    .cart-footer {
+      padding: 20px 24px;
+      background-color: var(--color-secondary-dark);
+      border-top: 1px solid rgba(246, 133, 12, 0.3);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .cart-coupon-form {
+      display: flex;
+      gap: 8px;
+    }
+
+    .cart-coupon-input {
+      flex: 1;
+      padding: 8px 12px;
+      background-color: var(--color-dominant);
+      border: 1px solid rgba(246, 133, 12, 0.4);
+      border-radius: var(--radius-sm);
+      color: #FFFFFF;
+      font-size: 0.85rem;
+      font-family: var(--font-heading);
+      outline: none;
+      text-transform: uppercase;
+    }
+
+    .cart-coupon-input:focus {
+      border-color: var(--color-accent);
+    }
+
+    .cart-summary-line {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.9rem;
+      color: var(--text-subtle);
+    }
+
+    .cart-summary-line.total {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--text-main);
+      border-top: 1px solid rgba(255, 255, 255, 0.12);
+      padding-top: 10px;
+      font-family: var(--font-heading);
+    }
+
+    .cart-summary-line.total span:last-child {
+      color: var(--color-accent);
+    }
+
+    .cart-checkout-btn {
+      width: 100%;
+      padding: 14px;
+      font-size: 1rem;
+    }
+
+    .cart-clear-btn {
+      background: none;
+      border: none;
+      color: var(--text-subtle);
+      font-size: 0.8rem;
+      cursor: pointer;
+      text-decoration: underline;
+      align-self: center;
+      transition: var(--transition-standard);
+    }
+
+    .cart-clear-btn:hover {
+      color: #ff5c5c;
+    }
+
+    /* Toast Notification */
+    .cart-toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background-color: var(--color-secondary-dark);
+      border: 2px solid var(--color-accent);
+      border-radius: var(--radius-sm);
+      padding: 14px 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      z-index: 3000;
+      transform: translateY(120%);
+      opacity: 0;
+      transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .cart-toast.active {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .cart-toast-msg {
+      font-size: 0.9rem;
+      color: var(--text-main);
+      font-family: var(--font-heading);
+    }
+
+    /* ==========================================================================
+       8. SECCIÓN F: PIE DE PÁGINA (FOOTER)
+       ========================================================================== */
+    .site-footer {
+      background-color: var(--color-secondary);
+      border-top: 1px solid rgba(246, 133, 12, 0.3);
+      color: var(--text-subtle);
+      padding: 80px 0 35px;
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr 1.6fr;
+      gap: 48px;
+      margin-bottom: 60px;
+    }
+
+    .footer-col h4 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 22px;
+      position: relative;
+      padding-bottom: 8px;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 32px;
+      height: 2px;
+      background-color: var(--color-accent);
+    }
+
+    .footer-about p {
+      font-size: 0.92rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      font-size: 0.95rem;
+      color: var(--text-subtle);
+      transition: var(--transition-standard);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .footer-links a:hover {
+      color: var(--color-accent);
+      transform: translateX(4px);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 14px;
+      font-size: 0.92rem;
+    }
+
+    .contact-item svg {
+      width: 18px;
+      height: 18px;
+      fill: var(--color-accent);
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    /* Formulario Boletín */
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      margin-bottom: 20px;
+    }
+
+    .newsletter-input {
+      flex: 1;
+      padding: 12px 16px;
+      background-color: var(--color-dominant);
+      border: 1px solid rgba(246, 133, 12, 0.4);
+      border-radius: var(--radius-sm);
+      color: var(--text-main);
+      font-family: var(--font-heading);
+      font-size: 0.9rem;
+      outline: none;
+      transition: var(--transition-standard);
+    }
+
+    .newsletter-input:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 10px rgba(246, 133, 12, 0.3);
+    }
+
+    .newsletter-input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+      font-family: var(--font-body);
+      font-style: italic;
+    }
+
+    /* Redes Sociales */
+    .social-links {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .social-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: var(--color-dominant);
+      border: 1px solid rgba(246, 133, 12, 0.3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-main);
+      transition: var(--transition-standard);
+    }
+
+    .social-icon svg {
+      width: 18px;
+      height: 18px;
+      fill: currentColor;
+      transition: var(--transition-standard);
+    }
+
+    .social-icon:hover {
+      background-color: var(--color-accent);
+      color: #000000;
+      border-color: var(--color-accent);
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-accent);
+    }
+
+    /* Footer Bottom */
+    .footer-bottom {
+      padding-top: 25px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      color: var(--text-subtle);
+    }
+
+    .footer-bottom a {
+      color: var(--color-accent);
+    }
+
+    .footer-bottom a:hover {
+      text-decoration: underline;
+    }
+
+    /* ==========================================================================
+       9. RESPONSIVIDAD (MEDIA QUERIES)
+       ========================================================================== */
+    @media (max-width: 1100px) {
+      .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 36px;
+      }
+    }
+
+    @media (max-width: 900px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+      .hero-subtitle {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-buttons {
+        justify-content: center;
+      }
+      .hero-stats {
+        width: 100%;
+      }
+      .hero-visual {
+        max-width: 480px;
+        margin: 20px auto 0;
+      }
+      .authors-grid,
+      .mothers-grid {
+        grid-template-columns: 1fr;
+        max-width: 580px;
+        margin: 0 auto;
+      }
+      .discount-content-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+      .mothers-discount-banner {
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .menu-toggle {
+        display: block;
+      }
+      .nav-menu {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        background-color: var(--color-secondary);
+        flex-direction: column;
+        padding: 30px;
+        gap: 20px;
+        border-bottom: 2px solid var(--color-accent);
+        transform: translateY(-150%);
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition-standard);
+      }
+      .nav-menu.active {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .books-grid {
+        grid-template-columns: 1fr;
+        max-width: 420px;
+        margin: 0 auto;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+      .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+      }
+      .newsletter-form {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==========================================================================
+       A. BARRA DE NAVEGACIÓN (NAVBAR)
+       ========================================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container navbar-inner">
+      <a href="#inicio" class="brand-logo" aria-label="Moni Books Inicio">
+        <!-- Icono de Libro Abierto -->
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M21 4H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-9 14.5c-2.4 0-4.6-.9-6-2.4V6.2C7.3 7.3 9.4 8 12 8s4.7-.7 6-1.8v10.4c-1.4 1.5-3.6 2.4-6 2.4z"/>
+        </svg>
+        Moni<span>Books</span>
+      </a>
+
+      <!-- Menú de Enlaces -->
+      <nav aria-label="Menú principal">
+        <ul class="nav-menu" id="navMenu">
+          <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+          <li><a href="#destacados" class="nav-link">Destacados</a></li>
+          <li><a href="#escritores" class="nav-link">Escritores de Moda</a></li>
+          <li><a href="#madres-escritoras" class="nav-link">Madres Escritoras</a></li>
+          <li>
+            <a href="#descuento-especial" class="nav-link nav-link-discount">
+              Descuento Especial
+              <span class="nav-discount-badge">-25%</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Botón de Acción / Carrito Activo -->
+      <div class="nav-actions">
+        <button class="btn btn-accent btn-sm cart-btn" id="openCartBtn" onclick="toggleCartDrawer()" type="button" aria-label="Abrir carrito de compras">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/>
+          </svg>
+          <span>Carrito</span>
+          <span class="cart-count-badge" id="cartCountBadge">0</span>
+        </button>
+
+        <!-- Botón Móvil -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ==========================================================================
+         B. SECCIÓN HERO (PORTADA PRINCIPAL)
+         ========================================================================== -->
+    <section class="hero" id="inicio">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge-container">
+            <span class="dot"></span>
+            <span>Edición Literaria 2026 &bull; Curaduría Exclusiva</span>
+          </div>
+
+          <h1 class="hero-title">
+            El refugio donde las <span class="highlight">historias</span> encuentran su hogar.
+          </h1>
+
+          <p class="hero-subtitle">
+            En <em>Moni Books</em> creemos en el poder transformador de cada página. Descubre obras que despiertan la imaginación, desafían el pensamiento y acarician el alma de los lectores apasionados.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#destacados" class="btn btn-accent">
+              Descubrir Novedades
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+                <polyline points="12 5 19 12 12 19"></polyline>
+              </svg>
+            </a>
+            <a href="#madres-escritoras" class="btn btn-outline-accent">
+              Especial: Madres Escritoras
+            </a>
+            <a href="#descuento-especial" class="btn btn-discount-hero">
+              <span aria-hidden="true">🔥</span> 25% Descuento Especial
+            </a>
+          </div>
+
+          <div class="hero-stats">
+            <div class="stat-item">
+              <h3>+12K</h3>
+              <p>Títulos seleccionados</p>
+            </div>
+            <div class="stat-item">
+              <h3>98%</h3>
+              <p>Lectores satisfechos</p>
+            </div>
+            <div class="stat-item">
+              <h3>24/48h</h3>
+              <p>Envíos literarios directos</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="hero-image-card">
+            <!-- Imagen: Abuelita en un salón acogedor con luz de atardecer leyendo un cuento a su nieta -->
+            <img src="abuelita-leyendo.jpg" alt="Abuelita en un salón acogedor con luz de atardecer leyendo un cuento a su nieta junto a estanterías y un café humeante" loading="eager">
+          </div>
+          <div class="hero-floating-card">
+            <div class="icon-box">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/>
+              </svg>
+            </div>
+            <div class="info">
+              <strong>Librería Recomendada</strong>
+              <span>Comunidad literaria de confianza</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         C. SECCIÓN: LIBROS MÁS DESTACADOS
+         ========================================================================== -->
+    <section class="section-padding featured-books" id="destacados">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Colección Selecta</span>
+          <h2 class="section-title">Libros Más Destacados</h2>
+          <p class="section-subtitle">
+            Obras maestras contemporáneas e historias inolvidables que no pueden faltar en tu biblioteca personal.
+          </p>
+        </header>
+
+        <div class="books-grid">
+          <!-- Libro 1 -->
+          <article class="book-card">
+            <div class="book-cover-wrap">
+              <span class="badge badge-accent book-badge-pos">Bestseller</span>
+              <img src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=700&q=80" alt="Portada de El Murmullo del Viento" loading="lazy">
+            </div>
+            <div class="book-info">
+              <div class="book-rating" aria-label="Calificación 5 estrellas">
+                ★★★★★ <span>(4.9)</span>
+              </div>
+              <h3 class="book-title">El Murmullo del Viento</h3>
+              <p class="book-author">Por Helena Thorne</p>
+              <p class="synopsis-text">
+                Un sobrecogedor relato sobre la memoria, la reconciliación familiar y los secretos ocultos tras los muros de un antiguo faro en la costa atlántica.
+              </p>
+              <div class="book-footer">
+                <span class="price-tag">$24.50</span>
+                <button class="btn btn-accent btn-sm" onclick="addToCart({ id: 'libro-1', title: 'El Murmullo del Viento', author: 'Helena Thorne', price: 24.50, image: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=700&q=80' })" type="button">Comprar</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Libro 2 -->
+          <article class="book-card">
+            <div class="book-cover-wrap">
+              <span class="badge badge-accent book-badge-pos">Recomendado</span>
+              <img src="https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=700&q=80" alt="Portada de Crónicas de Roble Verde" loading="lazy">
+            </div>
+            <div class="book-info">
+              <div class="book-rating" aria-label="Calificación 5 estrellas">
+                ★★★★★ <span>(4.8)</span>
+              </div>
+              <h3 class="book-title">Crónicas de Roble Verde</h3>
+              <p class="book-author">Por Mateo Valenzuela</p>
+              <p class="synopsis-text">
+                Una epopeya lírica que explora la convivencia del hombre con los misterios del bosque profundo y la fragilidad del tiempo.
+              </p>
+              <div class="book-footer">
+                <span class="price-tag">$21.90</span>
+                <button class="btn btn-accent btn-sm" onclick="addToCart({ id: 'libro-2', title: 'Crónicas de Roble Verde', author: 'Mateo Valenzuela', price: 21.90, image: 'https://images.unsplash.com/photo-1543002588-bfa74002ed7e?auto=format&fit=crop&w=700&q=80' })" type="button">Comprar</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Libro 3 -->
+          <article class="book-card">
+            <div class="book-cover-wrap">
+              <span class="badge badge-accent book-badge-pos">Premio Crítica</span>
+              <img src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80" alt="Portada de Sombras en la Niebla" loading="lazy">
+            </div>
+            <div class="book-info">
+              <div class="book-rating" aria-label="Calificación 5 estrellas">
+                ★★★★★ <span>(5.0)</span>
+              </div>
+              <h3 class="book-title">Sombras en la Niebla</h3>
+              <p class="book-author">Por Clara Benítez</p>
+              <p class="synopsis-text">
+                Un vertiginoso thriller psicológico ambientado en Praga, donde cada pista descubierta amenaza con reescribir el pasado de su protagonista.
+              </p>
+              <div class="book-footer">
+                <span class="price-tag">$26.00</span>
+                <button class="btn btn-accent btn-sm" onclick="addToCart({ id: 'libro-3', title: 'Sombras en la Niebla', author: 'Clara Benítez', price: 26.00, image: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=700&q=80' })" type="button">Comprar</button>
+              </div>
+            </div>
+          </article>
+
+          <!-- Libro 4 -->
+          <article class="book-card">
+            <div class="book-cover-wrap">
+              <span class="badge badge-accent book-badge-pos">Novedad</span>
+              <img src="https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=700&q=80" alt="Portada de El Jardín de Medianoche" loading="lazy">
+            </div>
+            <div class="book-info">
+              <div class="book-rating" aria-label="Calificación 5 estrellas">
+                ★★★★★ <span>(4.7)</span>
+              </div>
+              <h3 class="book-title">El Jardín de Medianoche</h3>
+              <p class="book-author">Por Javier Soria</p>
+              <p class="synopsis-text">
+                Una novela histórica fascinante que entrelaza la alquimia renacentista con una trama de intriga política en el corazón de Toledo.
+              </p>
+              <div class="book-footer">
+                <span class="price-tag">$22.80</span>
+                <button class="btn btn-accent btn-sm" onclick="addToCart({ id: 'libro-4', title: 'El Jardín de Medianoche', author: 'Javier Soria', price: 22.80, image: 'https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=700&q=80' })" type="button">Comprar</button>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         D. SECCIÓN: ESCRITORES DE MODA
+         ========================================================================== -->
+    <section class="section-padding trending-authors" id="escritores">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Tendencias Literarias</span>
+          <h2 class="section-title">Escritores de Moda</h2>
+          <p class="section-subtitle">
+            Las plumas más leídas, comentadas e influyentes del panorama narrativo actual.
+          </p>
+        </header>
+
+        <div class="authors-grid">
+          <!-- Autor 1 -->
+          <article class="author-card">
+            <div class="author-photo-wrapper">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=600&q=80" alt="Fotografía del escritor Mateo Valenzuela" class="author-photo" loading="lazy">
+            </div>
+            <span class="author-genre">Ficción Contemporánea</span>
+            <h3 class="author-name">Mateo Valenzuela</h3>
+            <p class="bio-text">
+              Ganador de certámenes internacionales de novela. Su estilo lírico y penetrante disecciona las complejidades emocionales de la era moderna con una calidez excepcional.
+            </p>
+            <div class="author-latest-work">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+              </svg>
+              <div>
+                <div class="work-label">Obra Más Reciente</div>
+                <div class="work-title">Crónicas de Roble Verde (2026)</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Autor 2 -->
+          <article class="author-card">
+            <div class="author-photo-wrapper">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80" alt="Fotografía de la escritora Clara Benítez" class="author-photo" loading="lazy">
+            </div>
+            <span class="author-genre">Thriller Psicológico</span>
+            <h3 class="author-name">Clara Benítez</h3>
+            <p class="bio-text">
+              Ex-criminóloga y novelista consagrada. Maestra de la tensión narrativa y los giros inesperados, ha conseguido que más de 500.000 lectores no puedan soltar sus libros.
+            </p>
+            <div class="author-latest-work">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+              </svg>
+              <div>
+                <div class="work-label">Obra Más Reciente</div>
+                <div class="work-title">Sombras en la Niebla (2025)</div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Autor 3 -->
+          <article class="author-card">
+            <div class="author-photo-wrapper">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=600&q=80" alt="Fotografía del escritor Javier Soria" class="author-photo" loading="lazy">
+            </div>
+            <span class="author-genre">Novela Histórica</span>
+            <h3 class="author-name">Javier Soria</h3>
+            <p class="bio-text">
+              Historiador y ensayista. Combina el rigor documental con una prosa ágil y sensorial, resucitando épocas perdidas con un realismo y riqueza que hechiza a la crítica.
+            </p>
+            <div class="author-latest-work">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+              </svg>
+              <div>
+                <div class="work-label">Obra Más Reciente</div>
+                <div class="work-title">El Jardín de Medianoche (2026)</div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================================================
+         E. SECCIÓN ESPECIAL: MADRES ESCRITORAS
+         ========================================================================== -->
+    <section class="section-padding special-mothers" id="madres-escritoras">
+      <div class="container">
+        <header class="section-header">
+          <span class="section-tag">Espacio Exclusivo Moni Books</span>
+          <h2 class="section-title">Madres Escritoras</h2>
+          <p class="section-subtitle">
+            Un homenaje íntimo a las autoras que tejen universos literarios mientras abrazan la crianza, transformando la maternidad en una fuente inagotable de arte y valentía.
+          </p>
+        </header>
+
+        <div class="mothers-grid">
+          <!-- Autora 1 -->
+          <article class="mother-card">
+            <div class="mother-header">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80" alt="Retrato de Elena Morales" class="mother-photo" loading="lazy">
+              <div class="mother-titles">
+                <h3>Elena Morales</h3>
+                <span>Poeta y Novelista &bull; Madre de dos</span>
+              </div>
+            </div>
+
+            <div class="quote-block">
+              <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+              <p class="quote-text">
+                Escribir con un hijo en brazos me enseñó que el tiempo no se pierde: se multiplica cuando el corazón late al compás de dos vidas.
+              </p>
+            </div>
+
+            <p class="mother-story">
+              Compaginó la crianza de sus gemelos con la escritura de su aclamada trilogía en madrugadas silenciosas. Sus relatos abordan la dualidad entre el cuidado incondicional y la preservación inquebrantable de la identidad creativa.
+            </p>
+
+            <div class="recommended-book-box">
+              <div class="book-meta">
+                <strong>Libro Recomendado</strong>
+                <span>Latidos de Papel (Novela)</span>
+              </div>
+              <button class="btn btn-accent btn-sm" onclick="addToCart({ id: 'madre-1', title: 'Latidos de Papel', author: 'Elena Morales', price: 19.50, image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=600&q=80' })" type="button">Comprar ($19.50)</button>
+            </div>
+          </article>
+
+          <!-- Autora 2 -->
+          <article class="mother-card">
+            <div class="mother-header">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80" alt="Retrato de Sofía Villalobos" class="mother-photo" loading="lazy">
+              <div class="mother-titles">
+                <h3>Sofía Villalobos</h3>
+                <span>Ensayista y Filósofa &bull; Madre de tres</span>
+              </div>
+            </div>
+
+            <div class="quote-block">
+              <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+              <p class="quote-text">
+                La maternidad no silenció mi voz literaria; le dio una textura más profunda, más vulnerable y desgarradoramente humana.
+              </p>
+            </div>
+
+            <p class="mother-story">
+              Reconocida por desafiar los mitos sobre la maternidad romántica, Sofía investiga el vínculo entre la ternura, el trabajo intelectual y el papel de la mujer creadora en la sociedad contemporánea.
+            </p>
+
+            <div class="recommended-book-box">
+              <div class="book-meta">
+                <strong>Libro Recomendado</strong>
+                <span>Maternar la Palabra (Ensayo)</span>
+              </div>
+              <button class="btn btn-accent btn-sm" onclick="addToCart({ id: 'madre-2', title: 'Maternar la Palabra', author: 'Sofía Villalobos', price: 21.00, image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=600&q=80' })" type="button">Comprar ($21.00)</button>
+            </div>
+          </article>
+
+          <!-- Autora 3 -->
+          <article class="mother-card">
+            <div class="mother-header">
+              <img src="https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=600&q=80" alt="Retrato de Carmen del Río" class="mother-photo" loading="lazy">
+              <div class="mother-titles">
+                <h3>Carmen del Río</h3>
+                <span>Narradora y Dramaturga &bull; Madre de una</span>
+              </div>
+            </div>
+
+            <div class="quote-block">
+              <span class="quote-mark" aria-hidden="true">&ldquo;</span>
+              <p class="quote-text">
+                Cada cuento que hoy conmueve a miles de lectores nació primero como un susurro en la penumbra del cuarto de mi hija.
+              </p>
+            </div>
+
+            <p class="mother-story">
+              Sus fábulas y relatos teatrales nacieron al borde de la cuna y conquistaron certámenes de literatura hispanoamericana. Defiende la literatura familiar como la primera escuela de empatía del ser humano.
+            </p>
+
+            <div class="recommended-book-box">
+              <div class="book-meta">
+                <strong>Libro Recomendado</strong>
+                <span>El Faro de las Tres Niñas</span>
+              </div>
+              <button class="btn btn-accent btn-sm" onclick="addToCart({ id: 'madre-3', title: 'El Faro de las Tres Niñas', author: 'Carmen del Río', price: 18.90, image: 'https://images.unsplash.com/photo-1567532939604-b6b5b0db2604?auto=format&fit=crop&w=600&q=80' })" type="button">Comprar ($18.90)</button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Apartado de Descuento Especial: Madres Escritoras -->
+        <div class="mothers-discount-banner" id="descuento-especial">
+          <div class="discount-badge-ribbon">
+            <span class="badge badge-accent">Promoción Especial</span>
+            <span class="discount-time">⏱️ Oferta por tiempo limitado</span>
+          </div>
+
+          <div class="discount-content-grid">
+            <div class="discount-text-col">
+              <h3 class="discount-title">
+                25% de Descuento en la Colección <span>Letras Maternas</span>
+              </h3>
+              <p class="discount-description">
+                Celebramos la fuerza y la sensibilidad de las madres que escriben. Adquiere cualquiera de las obras recomendadas con un precio preferencial y recibe de obsequio un marcapáginas artesanal de madera grabado a mano.
+              </p>
+              <div class="discount-perks">
+                <div class="perk-item">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                  <span>Envío prioritario sin costo en la compra de 2 o más títulos de autoras</span>
+                </div>
+                <div class="perk-item">
+                  <svg viewBox="0 0 24 24"><path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/></svg>
+                  <span>Edición de regalo con marcapáginas exclusivo de Moni Books</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="discount-action-col">
+              <span class="coupon-label">Aplica este cupón en el checkout:</span>
+              <div class="coupon-code-wrap">
+                <code class="coupon-code" id="couponCode">MADRES25</code>
+                <button class="btn-copy-coupon" id="btnCopyCoupon" onclick="copyCoupon()" type="button" title="Copiar código">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+                  </svg>
+                  <span id="copyText">Copiar</span>
+                </button>
+              </div>
+              <a href="#destacados" class="btn btn-accent discount-cta-btn">
+                Explorar Obras con Descuento
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+
+              <div class="discount-tools">
+                <button class="btn-direct-link" id="btnShareDirect" onclick="copyDirectLink()" type="button">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/>
+                  </svg>
+                  <span id="shareLinkText">Copiar Enlace Directo</span>
+                </button>
+                <button class="btn-create-modal-trigger" onclick="openCreateDiscountModal()" type="button">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                  </svg>
+                  Crear Descuento Especial
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       F. PIE DE PÁGINA (FOOTER)
+       ========================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <!-- Columna 1: Marca y Misión -->
+        <div class="footer-col footer-about">
+          <a href="#inicio" class="brand-logo" style="margin-bottom: 18px; display: inline-flex;">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M21 4H3a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V5a1 1 0 0 0-1-1zm-9 14.5c-2.4 0-4.6-.9-6-2.4V6.2C7.3 7.3 9.4 8 12 8s4.7-.7 6-1.8v10.4c-1.4 1.5-3.6 2.4-6 2.4z"/>
+            </svg>
+            Moni<span>Books</span>
+          </a>
+          <p>
+            Tu espacio literario de confianza. Cultivamos el amor por las buenas letras, apoyamos a autores noveles y consolidados, y acercamos las mejores historias hasta tu puerta.
+          </p>
+          <!-- Redes Sociales -->
+          <div class="social-links">
+            <a href="#" class="social-icon" aria-label="Instagram de Moni Books">
+              <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Twitter X de Moni Books">
+              <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="#" class="social-icon" aria-label="Facebook de Moni Books">
+              <svg viewBox="0 0 24 24"><path d="M22.675 0h-21.35c-.732 0-1.325.593-1.325 1.325v21.351c0 .731.593 1.324 1.325 1.324h11.495v-9.294h-3.128v-3.622h3.128v-2.671c0-3.1 1.893-4.788 4.659-4.788 1.325 0 2.463.099 2.795.143v3.24l-1.918.001c-1.504 0-1.795.715-1.795 1.763v2.313h3.587l-.467 3.622h-3.12v9.293h6.116c.73 0 1.323-.593 1.323-1.325v-21.35c0-.732-.593-1.325-1.325-1.325z"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna 2: Enlaces Rápidos -->
+        <div class="footer-col">
+          <h4>Navegación</h4>
+          <ul class="footer-links">
+            <li><a href="#inicio">&rarr; Inicio</a></li>
+            <li><a href="#destacados">&rarr; Libros Destacados</a></li>
+            <li><a href="#escritores">&rarr; Escritores de Moda</a></li>
+            <li><a href="#madres-escritoras">&rarr; Madres Escritoras</a></li>
+            <li><a href="#descuento-especial">&rarr; Descuento Especial (-25%)</a></li>
+            <li><a href="#destacados">&rarr; Club de Lectura</a></li>
+          </ul>
+        </div>
+
+        <!-- Columna 3: Contacto -->
+        <div class="footer-col">
+          <h4>Contacto</h4>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            <span>Av. Literaria 404, Barrio de las Letras</span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            <span>+34 912 345 678</span>
+          </div>
+          <div class="contact-item">
+            <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            <span>contacto@monibooks.com</span>
+          </div>
+        </div>
+
+        <!-- Columna 4: Boletín Literario -->
+        <div class="footer-col">
+          <h4>Boletín Literario</h4>
+          <p style="font-size: 0.9rem; margin-bottom: 12px;">
+            Suscríbete y recibe nuestras recomendaciones mensuales, entrevistas con autores y acceso prioritario a firmas de libros.
+          </p>
+          <form class="newsletter-form" onsubmit="event.preventDefault(); alert('¡Gracias por unirte a nuestro Boletín Literario en Moni Books!');">
+            <input type="email" class="newsletter-input" placeholder="Tu correo electrónico..." required aria-label="Correo electrónico para boletín">
+            <button type="submit" class="btn btn-accent btn-sm">Suscribirme</button>
+          </form>
+          <span style="font-size: 0.78rem; color: var(--text-subtle); display: block; font-style: italic;">
+            Prometemos lecturas exquisitas y cero spam.
+          </span>
+        </div>
+      </div>
+
+      <!-- Footer Inferior -->
+      <div class="footer-bottom">
+        <p>&copy; 2026 Moni Books. Todos los derechos reservados.</p>
+        <p>Diseñado con pasión para los amantes de la lectura.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal: Crear Descuento Especial Personalizado -->
+  <div class="modal-overlay" id="discountModal" onclick="handleOverlayClick(event)">
+    <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close-btn" onclick="closeCreateDiscountModal()" aria-label="Cerrar modal">&times;</button>
+      <h3 class="modal-title" id="modalTitle">Crear Descuento Especial</h3>
+      <p class="modal-subtitle">Genera un cupón literario exclusivo y obtén un enlace directo listo para compartir.</p>
+      
+      <form id="createDiscountForm" onsubmit="handleCreateDiscount(event)">
+        <div class="form-group">
+          <label class="form-label" for="discountName">Nombre o Código del Descuento</label>
+          <input type="text" id="discountName" class="form-input" placeholder="Ej: LECTURAMADRE, CLUBMONI..." required>
+        </div>
+        
+        <div class="form-group">
+          <label class="form-label" for="discountPercent">Porcentaje de Descuento</label>
+          <select id="discountPercent" class="form-select">
+            <option value="15">15% de Descuento Especial</option>
+            <option value="20">20% de Descuento Especial</option>
+            <option value="25" selected>25% de Descuento Especial</option>
+            <option value="30">30% de Descuento Colección</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-accent" style="width: 100%;">
+          ✨ Generar Cupón y Enlace Directo
+        </button>
+      </form>
+
+      <div class="modal-generated-result" id="modalResult">
+        <span class="coupon-label" style="display:block; margin-bottom: 6px;">¡Tu enlace directo está listo!</span>
+        <code class="generated-link-display" id="generatedLink"></code>
+        <button class="btn btn-outline-accent btn-sm" id="btnCopyGenerated" onclick="copyGeneratedLink()" type="button" style="width: 100%;">
+          📋 Copiar Enlace Directo
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       PANEL LATERAL: CARRITO DE COMPRAS (DRAWER)
+       ========================================================================== -->
+  <div class="cart-overlay" id="cartOverlay" onclick="handleCartOverlayClick(event)">
+    <aside class="cart-drawer" id="cartDrawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="cart-header">
+        <h3 id="cartTitle">
+          <svg viewBox="0 0 24 24"><path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z"/></svg>
+          Tu Cesta Literaria (<span id="cartHeaderCount">0</span>)
+        </h3>
+        <button class="cart-close-btn" onclick="closeCartDrawer()" aria-label="Cerrar carrito">&times;</button>
+      </div>
+
+      <!-- Contenedor dinámico de libros -->
+      <div class="cart-items-container" id="cartItemsContainer">
+        <!-- Renderizado por JS -->
+      </div>
+
+      <!-- Pie del carrito -->
+      <div class="cart-footer" id="cartFooter">
+        <!-- Cupón de Descuento -->
+        <form class="cart-coupon-form" onsubmit="applyCartCoupon(event)">
+          <input type="text" id="cartCouponInput" class="cart-coupon-input" placeholder="Cupón (ej. MADRES25)" aria-label="Cupón de descuento">
+          <button type="submit" class="btn btn-outline-accent btn-sm">Aplicar</button>
+        </form>
+
+        <div class="cart-summary">
+          <div class="cart-summary-line">
+            <span>Subtotal:</span>
+            <span id="cartSubtotal">$0.00</span>
+          </div>
+          <div class="cart-summary-line" id="discountLine" style="display: none; color: var(--color-accent);">
+            <span id="discountLabel">Descuento:</span>
+            <span id="cartDiscount">-$0.00</span>
+          </div>
+          <div class="cart-summary-line">
+            <span>Envío a domicilio:</span>
+            <span style="color: #63d15b;">GRATIS</span>
+          </div>
+          <div class="cart-summary-line total">
+            <span>Total a Pagar:</span>
+            <span id="cartTotal">$0.00</span>
+          </div>
+        </div>
+
+        <button class="btn btn-accent cart-checkout-btn" onclick="checkoutCart()" type="button">
+          Finalizar Pedido Literario
+        </button>
+
+        <button class="cart-clear-btn" onclick="clearCart()" type="button">
+          Vaciar cesta
+        </button>
+      </div>
+    </aside>
+  </div>
+
+  <!-- Toast Notification de Carrito -->
+  <div class="cart-toast" id="cartToast" role="alert" aria-live="polite">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--color-accent)">
+      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+    </svg>
+    <span class="cart-toast-msg" id="cartToastMsg">Libro añadido a la cesta</span>
+    <button class="btn btn-outline-accent btn-sm" onclick="openCartDrawer()" type="button" style="padding: 4px 10px; font-size: 0.75rem;">Ver Cesta</button>
+  </div>
+
+  <!-- ==========================================================================
+       10. SCRIPT: NAVEGACIÓN SUAVE Y MENÚ MÓVIL
+       ========================================================================== -->
+  <script>
+    // Manejo del Menú Responsive en Móviles
+    const menuToggle = document.getElementById('menuToggle');
+    const navMenu = document.getElementById('navMenu');
+
+    if (menuToggle && navMenu) {
+      menuToggle.addEventListener('click', () => {
+        const isActive = navMenu.classList.toggle('active');
+        menuToggle.setAttribute('aria-expanded', isActive);
+      });
+
+      // Cerrar menú al hacer clic en un enlace
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          menuToggle.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+
+    // Resaltar Enlace Activo según el Scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+      let currentSection = '';
+      const scrollPos = window.pageYOffset + 120;
+
+      sections.forEach(section => {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          currentSection = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${currentSection}`) {
+          link.classList.add('active');
+        }
+      });
+    });
+
+    // Función para copiar código de cupón de Madres Escritoras
+    function copyCoupon() {
+      const codeElement = document.getElementById('couponCode');
+      const copyText = document.getElementById('copyText');
+      if (codeElement) {
+        const code = codeElement.innerText.trim();
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(code).then(() => {
+            if (copyText) copyText.innerText = '¡Copiado!';
+            setTimeout(() => {
+              if (copyText) copyText.innerText = 'Copiar';
+            }, 2500);
+          }).catch(() => {
+            prompt('Copia tu código de descuento:', code);
+          });
+        } else {
+          prompt('Copia tu código de descuento:', code);
+        }
+      }
+    }
+
+    // Función para copiar el enlace directo al descuento especial
+    function copyDirectLink() {
+      const url = window.location.href.split('#')[0] + '#descuento-especial';
+      const shareLinkText = document.getElementById('shareLinkText');
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(url).then(() => {
+          if (shareLinkText) shareLinkText.innerText = '¡Enlace Directo Copiado!';
+          setTimeout(() => {
+            if (shareLinkText) shareLinkText.innerText = 'Copiar Enlace Directo';
+          }, 2500);
+        }).catch(() => {
+          prompt('Enlace directo al descuento especial:', url);
+        });
+      } else {
+        prompt('Enlace directo al descuento especial:', url);
+      }
+    }
+
+    // Modal para Crear Descuento Especial
+    function openCreateDiscountModal() {
+      const modal = document.getElementById('discountModal');
+      if (modal) modal.classList.add('active');
+    }
+
+    function closeCreateDiscountModal() {
+      const modal = document.getElementById('discountModal');
+      if (modal) modal.classList.remove('active');
+    }
+
+    function handleOverlayClick(event) {
+      if (event.target.id === 'discountModal') {
+        closeCreateDiscountModal();
+      }
+    }
+
+    function handleCreateDiscount(event) {
+      event.preventDefault();
+      const name = document.getElementById('discountName').value.trim().toUpperCase().replace(/\s+/g, '');
+      const percent = document.getElementById('discountPercent').value;
+      const cleanCode = name || 'DESCUENTO' + percent;
+      
+      const baseUrl = window.location.href.split('#')[0].split('?')[0];
+      const directUrl = `${baseUrl}#descuento-especial?cupon=${cleanCode}&desc=${percent}`;
+      
+      const modalResult = document.getElementById('modalResult');
+      const generatedLink = document.getElementById('generatedLink');
+      
+      if (generatedLink && modalResult) {
+        generatedLink.innerText = directUrl;
+        modalResult.style.display = 'block';
+      }
+    }
+
+    function copyGeneratedLink() {
+      const linkElem = document.getElementById('generatedLink');
+      const btn = document.getElementById('btnCopyGenerated');
+      if (linkElem) {
+        const text = linkElem.innerText;
+        if (navigator.clipboard) {
+          navigator.clipboard.writeText(text).then(() => {
+            if (btn) btn.innerText = '¡Enlace Copiado al Portapapeles!';
+            setTimeout(() => {
+              if (btn) btn.innerText = '📋 Copiar Enlace Directo';
+            }, 2500);
+          }).catch(() => {
+            prompt('Copia tu enlace directo:', text);
+          });
+        } else {
+          prompt('Copia tu enlace directo:', text);
+        }
+      }
+    }
+
+    // Detectar si se abrió con cupón personalizado en la URL
+    window.addEventListener('DOMContentLoaded', () => {
+      const hash = window.location.hash;
+      if (hash.includes('cupon=')) {
+        const parts = hash.split('?');
+        if (parts.length > 1) {
+          const params = new URLSearchParams(parts[1]);
+          const customCode = params.get('cupon');
+          if (customCode) {
+            const couponCode = document.getElementById('couponCode');
+            if (couponCode) couponCode.innerText = customCode;
+          }
+        }
+      }
+    });
+
+    // ==========================================
+    // SISTEMA DEL CARRITO DE COMPRAS
+    // ==========================================
+    let cart = [];
+    let appliedCoupon = null;
+
+    // Cargar carrito desde localStorage
+    try {
+      const savedCart = localStorage.getItem('moni_books_cart');
+      if (savedCart) {
+        cart = JSON.parse(savedCart);
+      }
+      const savedCoupon = localStorage.getItem('moni_books_coupon');
+      if (savedCoupon) {
+        appliedCoupon = JSON.parse(savedCoupon);
+      }
+    } catch (e) {
+      console.warn('LocalStorage no disponible');
+    }
+
+    function saveCart() {
+      try {
+        localStorage.setItem('moni_books_cart', JSON.stringify(cart));
+        if (appliedCoupon) {
+          localStorage.setItem('moni_books_coupon', JSON.stringify(appliedCoupon));
+        } else {
+          localStorage.removeItem('moni_books_coupon');
+        }
+      } catch (e) {}
+      renderCart();
+    }
+
+    function toggleCartDrawer() {
+      const overlay = document.getElementById('cartOverlay');
+      if (overlay) {
+        overlay.classList.toggle('active');
+        renderCart();
+      }
+    }
+
+    function openCartDrawer() {
+      const overlay = document.getElementById('cartOverlay');
+      if (overlay) {
+        overlay.classList.add('active');
+        renderCart();
+      }
+    }
+
+    function closeCartDrawer() {
+      const overlay = document.getElementById('cartOverlay');
+      if (overlay) {
+        overlay.classList.remove('active');
+      }
+    }
+
+    function handleCartOverlayClick(event) {
+      if (event.target.id === 'cartOverlay') {
+        closeCartDrawer();
+      }
+    }
+
+    function addToCart(book) {
+      const existing = cart.find(item => item.id === book.id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...book, qty: 1 });
+      }
+      saveCart();
+      showToast(`¡"${book.title}" añadido al carrito!`);
+
+      // Animar el contador del navbar
+      const badge = document.getElementById('cartCountBadge');
+      if (badge) {
+        badge.classList.add('bump');
+        setTimeout(() => badge.classList.remove('bump'), 300);
+      }
+    }
+
+    function updateItemQty(bookId, delta) {
+      const item = cart.find(i => i.id === bookId);
+      if (item) {
+        item.qty += delta;
+        if (item.qty <= 0) {
+          cart = cart.filter(i => i.id !== bookId);
+        }
+        saveCart();
+      }
+    }
+
+    function removeFromCart(bookId) {
+      cart = cart.filter(i => i.id !== bookId);
+      saveCart();
+    }
+
+    function clearCart() {
+      if (confirm('¿Deseas vaciar todos los libros de tu carrito?')) {
+        cart = [];
+        appliedCoupon = null;
+        saveCart();
+      }
+    }
+
+    function applyCartCoupon(event) {
+      event.preventDefault();
+      const input = document.getElementById('cartCouponInput');
+      if (!input) return;
+      const code = input.value.trim().toUpperCase();
+      if (!code) return;
+
+      if (code === 'MADRES25') {
+        appliedCoupon = { code: 'MADRES25', percent: 25 };
+        alert('🎉 ¡Cupón MADRES25 aplicado con éxito! 25% de descuento activado.');
+      } else if (code.startsWith('DESCUENTO') || code.includes('MADRE') || code.includes('MONI')) {
+        appliedCoupon = { code: code, percent: 20 };
+        alert(`🎉 ¡Cupón ${code} aplicado! 20% de descuento especial activado.`);
+      } else {
+        alert('El cupón ingresado no es válido o ha expirado. Prueba con: MADRES25');
+        return;
+      }
+      input.value = '';
+      saveCart();
+    }
+
+    function checkoutCart() {
+      if (cart.length === 0) {
+        alert('Tu cesta está vacía. Selecciona al menos un libro.');
+        return;
+      }
+      const total = calculateTotal();
+      alert(`📚 ¡Enhorabuena! Tu pedido por $${total.toFixed(2)} ha sido procesado con éxito en Moni Books.\n\nRecibirás un correo con el seguimiento de tu paquete literario.`);
+      cart = [];
+      appliedCoupon = null;
+      saveCart();
+      closeCartDrawer();
+    }
+
+    function calculateTotal() {
+      const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+      let discount = 0;
+      if (appliedCoupon && subtotal > 0) {
+        discount = subtotal * (appliedCoupon.percent / 100);
+      }
+      return Math.max(0, subtotal - discount);
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('cartToast');
+      const msgElem = document.getElementById('cartToastMsg');
+      if (toast && msgElem) {
+        msgElem.innerText = message;
+        toast.classList.add('active');
+        setTimeout(() => toast.classList.remove('active'), 3200);
+      }
+    }
+
+    function renderCart() {
+      const countBadge = document.getElementById('cartCountBadge');
+      const headerCount = document.getElementById('cartHeaderCount');
+      const container = document.getElementById('cartItemsContainer');
+      const subtotalElem = document.getElementById('cartSubtotal');
+      const discountElem = document.getElementById('cartDiscount');
+      const discountLine = document.getElementById('discountLine');
+      const discountLabel = document.getElementById('discountLabel');
+      const totalElem = document.getElementById('cartTotal');
+      const footer = document.getElementById('cartFooter');
+
+      const totalItems = cart.reduce((sum, i) => sum + i.qty, 0);
+      if (countBadge) countBadge.innerText = totalItems;
+      if (headerCount) headerCount.innerText = totalItems;
+
+      if (!container) return;
+
+      if (cart.length === 0) {
+        container.innerHTML = `
+          <div class="cart-empty-state">
+            <svg viewBox="0 0 24 24"><path d="M19 5v14H5V5h14m0-2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z"/></svg>
+            <h4>Tu cesta está vacía</h4>
+            <p>Descubre historias que despiertan el alma y acompáñate de un buen libro.</p>
+            <a href="#destacados" onclick="closeCartDrawer()" class="btn btn-accent btn-sm">Explorar Libros</a>
+          </div>
+        `;
+        if (footer) footer.style.display = 'none';
+        return;
+      }
+
+      if (footer) footer.style.display = 'flex';
+
+      let html = '';
+      let subtotal = 0;
+
+      cart.forEach(item => {
+        const itemTotal = item.price * item.qty;
+        subtotal += itemTotal;
+        html += `
+          <div class="cart-item">
+            <img src="${item.image}" alt="${item.title}" class="cart-item-img">
+            <div class="cart-item-details">
+              <h4 class="cart-item-title">${item.title}</h4>
+              <p class="cart-item-author">${item.author}</p>
+              <span class="cart-item-price">$${item.price.toFixed(2)}</span>
+            </div>
+            <div class="cart-item-controls">
+              <button class="qty-btn" onclick="updateItemQty('${item.id}', -1)" type="button" aria-label="Disminuir">-</button>
+              <span class="qty-number">${item.qty}</span>
+              <button class="qty-btn" onclick="updateItemQty('${item.id}', 1)" type="button" aria-label="Aumentar">+</button>
+            </div>
+            <button class="remove-item-btn" onclick="removeFromCart('${item.id}')" type="button" title="Eliminar de la cesta" aria-label="Eliminar ${item.title}">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z"/>
+              </svg>
+            </button>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
+
+      let discount = 0;
+      if (appliedCoupon) {
+        discount = subtotal * (appliedCoupon.percent / 100);
+        if (discountLine) discountLine.style.display = 'flex';
+        if (discountLabel) discountLabel.innerText = `Descuento (${appliedCoupon.code} -${appliedCoupon.percent}%):`;
+        if (discountElem) discountElem.innerText = `-$${discount.toFixed(2)}`;
+      } else {
+        if (discountLine) discountLine.style.display = 'none';
+      }
+
+      const total = Math.max(0, subtotal - discount);
+      if (subtotalElem) subtotalElem.innerText = `$${subtotal.toFixed(2)}`;
+      if (totalElem) totalElem.innerText = `$${total.toFixed(2)}`;
+    }
+
+    // Inicializar renderizado del carrito al cargar
+    window.addEventListener('DOMContentLoaded', () => {
+      renderCart();
+    });
+  </script>
+</body>
+</html>
